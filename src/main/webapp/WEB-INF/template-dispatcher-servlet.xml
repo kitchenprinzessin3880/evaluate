@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="au.csiro.data.recsys.controller" />
+	
+	<!-- Enables the Spring MVC annotations ex/ @Controller -->
+	<mvc:annotation-driven />
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" /> 
+
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+        in the /WEB-INF/views directory -->
+	<bean id="viewResolver"
+    	      class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+              <property name="prefix" value="/WEB-INF/views/jsp/" />
+              <property name="suffix" value=".jsp"/>
+        </bean>
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql:recsyseval" />
+		<property name="username" value="deva" />
+		<property name="password" value="suriya" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="au.csiro.data.recsys.model" />
+		<!-- property name="annotatedClasses"> <list> <value>com.beingjavaguys.model.Users</value> 
+			</list> </property -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean id="dataDao" class="au.csiro.data.recsys.dao.DataDaoImpl"></bean>
+	<bean id="dataServices" class="au.csiro.data.recsys.service.EvaluateServiceImpl"></bean>
+
+	<!--  util:properties id="prop" location="classpath:application.properties" / -->
+
+
+	<!-- bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping"> 
+		<property name="interceptors"> <list> <ref bean="validatingInterceptor" /> 
+		</list> </property> </bean -->
+
+	<!-- bean id="validatingInterceptor" class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor"> 
+		<property name="schema" value="/WEB-INF/schemas/igsn-csiro-v1.0.xsd" /> <property 
+		name="validateRequest" value="true" /> <property name="validateResponse" 
+		value="true" /> </bean -->
+
+<bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+    
+</beans>

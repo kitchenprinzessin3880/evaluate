@@ -1,0 +1,3 @@
+src/main/resources/hibernate.cfg.xml
+src/main/webapp/WEB-INF/dispatcher-servlet.xml
+target/

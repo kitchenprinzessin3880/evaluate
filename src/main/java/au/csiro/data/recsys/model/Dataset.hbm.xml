@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/02/2017 5:17:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="au.csiro.data.recsys.model.Dataset" table="dataset" schema="public" optimistic-lock="version">
+        <id name="datasetId" type="long">
+            <column name="dataset_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="collection" class="au.csiro.data.recsys.model.Collection" fetch="select">
+            <column name="collection_id" />
+        </many-to-one>
+        <property name="fedoraId" type="string">
+            <column name="fedora_id" not-null="true" unique="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="landingpage" type="string">
+            <column name="landingpage" not-null="true" />
+        </property>
+        <property name="contributors" type="string">
+            <column name="contributors" />
+        </property>
+        <property name="businessunit" type="string">
+            <column name="businessunit" />
+        </property>
+        <property name="leader" type="string">
+            <column name="leader" not-null="true" />
+        </property>
+        <property name="coltype" type="string">
+            <column name="coltype" />
+        </property>
+        <set name="resultses" table="results" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="target" not-null="true" />
+            </key>
+            <one-to-many class="au.csiro.data.recsys.model.Results" />
+        </set>
+        <set name="relatedDatasets" table="related_dataset" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="target" not-null="true" />
+            </key>
+            <one-to-many class="au.csiro.data.recsys.model.RelatedDataset" />
+        </set>
+    </class>
+</hibernate-mapping>

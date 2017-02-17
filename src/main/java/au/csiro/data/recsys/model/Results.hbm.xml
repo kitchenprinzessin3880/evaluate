@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/02/2017 5:17:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="au.csiro.data.recsys.model.Results" table="results" schema="public" optimistic-lock="version">
+        <id name="resultId" type="long">
+            <column name="result_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="dataset" class="au.csiro.data.recsys.model.Dataset" fetch="select">
+            <column name="target" not-null="true" />
+        </many-to-one>
+        <many-to-one name="relatedDataset" class="au.csiro.data.recsys.model.RelatedDataset" fetch="select">
+            <column name="related_datasetid" not-null="true" />
+        </many-to-one>
+        <property name="evaluator" type="string">
+            <column name="evaluator" not-null="true" />
+        </property>
+        <property name="rankvalue" type="string">
+            <column name="rankvalue" not-null="true" />
+        </property>
+        <property name="evaluationDate" type="date">
+            <column name="evaluation_date" length="13" not-null="true" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" />
+        </property>
+    </class>
+</hibernate-mapping>

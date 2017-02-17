@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/02/2017 5:17:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="au.csiro.data.recsys.model.RelatedDataset" table="related_dataset" schema="public" optimistic-lock="version">
+        <id name="relatedId" type="long">
+            <column name="related_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="dataset" class="au.csiro.data.recsys.model.Dataset" fetch="select">
+            <column name="target" not-null="true" />
+        </many-to-one>
+        <property name="fedoraId" type="string">
+            <column name="fedora_id" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="landingpage" type="string">
+            <column name="landingpage" not-null="true" />
+        </property>
+        <property name="rank" type="java.lang.Integer">
+            <column name="rank" />
+        </property>
+        <property name="simValue" type="double">
+            <column name="sim_value" precision="17" scale="17" not-null="true" />
+        </property>
+        <set name="resultses" table="results" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="related_datasetid" not-null="true" />
+            </key>
+            <one-to-many class="au.csiro.data.recsys.model.Results" />
+        </set>
+    </class>
+</hibernate-mapping>
