@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -112,6 +113,7 @@ public class DataDaoImpl implements DataDao {
 			session.close();
 		}
 	}
+	
 
 	private static String getCurrentTimeStamp() {
 		java.util.Date today = new java.util.Date();

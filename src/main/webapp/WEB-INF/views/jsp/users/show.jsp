@@ -23,8 +23,8 @@
 	</c:if>
 
 	<p>
-	The goal of the study is to increase user engagement in the CSIRO Data Access Portal (DAP) by recommending similar datasets. 
-	Please rate the following randomized list of similar datasets of the dataset-of-interest below. Please use the links to check the metadata of the datasets when you rate them. 
+	The goal of the study is to enable easy discovery of datasets in the CSIRO Data Access Portal (DAP) through recommendations of similar datasets. 
+	Please rate the following datasets in terms of their similarity to the dataset-of-interest. Please examine the metadata of the datasets when you rate them. You may click on the title to access the metadata of a dataset. 
 	</p>
 	<p>
 
@@ -76,8 +76,8 @@
 		</table>
 
 		
-			<div class="col-sm-5">
-			<textarea class="form-control" type="text" id="comment" name="comment"  rows="4" cols="50" placeholder="Please add other comments, observations, suggestions related to your evaluation here (if any)"></textarea>
+			<div class="col-sm-8">
+			<textarea class="form-control" type="text" id="comment" name="comment"  rows="5" cols="150" placeholder="Please add other comments, observations, suggestions related to your evaluation here (if any)"></textarea>
 		</div>
 		
 		<div style="float: right;">

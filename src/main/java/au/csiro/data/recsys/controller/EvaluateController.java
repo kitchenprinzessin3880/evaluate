@@ -88,7 +88,7 @@ public class EvaluateController {
 		if (responseCode.getStatusCode() == HttpStatus.CREATED)
 		{
 			redirectAttributes.addFlashAttribute("css", "success");
-			redirectAttributes.addFlashAttribute("msg", "Your evaluation has been submitted successfully! Thank you.");
+			redirectAttributes.addFlashAttribute("msg", "Your evaluation has been submitted successfully! Thank you very much for your participation. Your evaluation will help us to further improve our recommender service.");
 		}
 		else
 		{
