@@ -52,6 +52,7 @@
 					<th align="left">Similar</th>
 					<th align="left">Less Similar</th>
 					<th align="left">Dissimilar</th>
+					<th align="left">Don't Know</th>
 				</tr>
 			</thead>
 			
@@ -71,6 +72,8 @@
 						required> </td>
 						<td align="left"> <input type="radio"
 						name="${rel[0]}" value="D" required> </td>
+						<td align="left"> <input type="radio"
+						name="${rel[0]}" value="NA" required> </td>
 				</tr>
 			</c:forEach>
 		</table>
